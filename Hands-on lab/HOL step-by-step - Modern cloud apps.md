@@ -659,7 +659,7 @@ In this exercise, you will provision a website via the Azure Web App template us
     
     ![On the Identity screen, the System assigned tab is selected and the Status field is in the On position.](media/appconfig_systemidentity.png "The Identity Screen")
 
-9. Open the **contosokv** Key Vault resource, and from the left menu, select **Access policies**. 
+9. Open the **contosokv[Suffix]** Key Vault resource, and from the left menu, select **Access policies**. 
 
 10. Select the **+ Add Access Policy** link.
 
@@ -1044,13 +1044,13 @@ The Contoso call center admin application will only be accessible by users of th
 
     ![The Azure Active Directory menu option.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image123.png "Azure Portal")
 
-3. On the **Azure Active Directory** blade, locate and select the **Company branding** option.
+3. On the **Azure Active Directory** blade, locate and select the **Licenses** option under **Manage** Menu.
 
-    ![In the Azure Active Directory blade, Company branding is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image124.png "Azure Active Directory blade")
+    ![In the Azure Active Directory blade, Company branding is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up4.png "Azure Active Directory blade")
 
-4. In the right pane, select the **Get a free Premium trial...** link.
+4. Under Quick Tasks, select the **Get a free trial...** link.
 
-    ![On the left side of the Azure Active Directory blade, Company branding is selected. On the right side, the Get a free Premium trial link is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image125.png "Azure Active Directory blade")
+    ![On the left side of the Azure Active Directory blade, Company branding is selected. On the right side, the Get a free Premium trial link is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up5.png "Azure Active Directory blade")
 
     If you already have a Premium Azure Active Directory, skip to Task 2.
 
@@ -1087,17 +1087,15 @@ The Contoso call center admin application will only be accessible by users of th
 
     ![The + New User button is boxed in red on the Azure Active Directory blade.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image131.png "Azure Active Directory blade")
 
-7. On the **User** blade, specify a user's **Name** and **User name**. Specify the **User name** to be at the domain name for your Azure AD Tenant. For example: *tbaker@\[your tenant\].onmicrosoft.com*.
+7. On the **User** blade, specify following values and click on **Create**.
 
-    ![On the User blade, the two previously defined fields (Name and User name) are circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image132.png "User blade")
+    - **User name:** Chris
+    - **Name:** Chris Green
+    - Select **Let me create the password** 
+    - **Initial password:** Azure1234567
 
-8. Select the **Show Password** checkbox, and make a note of the password for use later.
+    ![On the User blade, the two previously defined fields (Name and User name) are circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up7.png "User blade")
 
-    ![The Show Password checkbox is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image133.png "Password section")
-
-9. Select **Create**.
-
-    ![Screenshot of the Create button.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image134.png "Create button")
 
 ### Task 3: Configure access control for the call center administration Web Application
 
@@ -1148,6 +1146,8 @@ The Contoso call center admin application will only be accessible by users of th
 1. Close your browser (or use an alternative), and launch a browser is **InPrivate or Incognito mode**. Navigate to the **Call Center Administration** website.
 
 2. The browser will redirect to the non-branded Access Control logon URL. You can log on with your Microsoft account or the **Contoso test user** you created earlier.
+
+>**Note:** For first Login you may be prompted to change the password, Provide a new password to continue with the lab.
 
     ![Microsoft login prompt.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image144.png "Microsoft login prompt")
 
