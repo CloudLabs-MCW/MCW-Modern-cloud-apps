@@ -143,7 +143,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 
 1. Navigate to the Azure Management portal, [http://portal.azure.com](http://portal.azure.com/), using a new tab or instance and login with your lab-provided Azure credentials.
 
-2. Navigate to the **contososports** resource group.
+2. Navigate to the **contososports-01** resource group.
 
 3. Select the **ContosoSportsDB** SQL Database.
 
@@ -157,7 +157,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 
     ![In the Database connection strings blade, the ADO.NET connection string is circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image24.png "Database connection strings blade")
 
-6. Go back to the **contososports** resource group blade, and select the **contososports** SQL Server.
+6. Go back to the **contososports-01** resource group blade, and select the **contososports[DeploymentID]** SQL Server.
 
     ![The contososports resource group with the contososports sql server highlighted.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/2019-11-15-17-47-46.png "Azure Portal")
 
@@ -182,7 +182,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 <!-- omit in toc -->
 #### Subtask 2: Retrieve Storage Account Access Keys
 
-1. Go back to the **contososports** blade resource group, and select the **contoso** Storage account.
+1. Go back to the **contososports-01** blade resource group, and select the **contoso[Suffix]** Storage account.
 
 2. On the **Storage account** blade, scroll down, and, under the **SETTINGS** menu area, select the **Access keys** option.
 
@@ -195,7 +195,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 <!-- omit in toc -->
 #### Subtask 3: Retrieve Service Bus Queue Connection String
 
-1. Go back to the **contososports** blade resource group, and select the **contoso** Service Bus Namespace.
+1. Go back to the **contososports-01** blade resource group, and select the **contososervicebus[Suffix]** Service Bus Namespace.
 
     ![Service Bus Namespace resource is highlighted](media/2020-03-18-10-38-09.png "Service Bus Namespace")
 
@@ -228,7 +228,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 
 You've retrieved multiple access keys and connection strings in this task. To properly secure them, and to keep these values out of application code, we need a secure place to store them. This place is the Azure Key Vault.
 
-1. Go back to the **contososports** resource group blade, and select the **contosokv** Key Vault resource.
+1. Go back to the **contososports-01** resource group blade, and select the **contosokv[Suffix]** Key Vault resource.
 
     ![The resource listing is displayed with the key vault item selected.](media/rg_selectkeyvault.png "Resource group listing")
 
@@ -263,7 +263,7 @@ You've retrieved multiple access keys and connection strings in this task. To pr
 
 The Contoso Sports solution contains multiple projects, each of which access the same Azure resources. In this subtask, we will be centralizing the configuration of the solution applications via the deployed Azure **App Configuration** resource.
 
-1. Go back to the **contososports** resource group blade, and select the **contosoconfig** App Configuration resource.
+1. Go back to the **contososports-01** resource group blade, and select the **contosoconfig[Suffix]** App Configuration resource.
 
     ![The resource listing is displayed with the App Configuration resource highlighted.](media/appconfig_resourcelist_selection.png "The resource listing")
 
@@ -294,9 +294,9 @@ The Contoso Sports solution contains multiple projects, each of which access the
 <!-- omit in toc -->
 #### Subtask 6: Update the configuration in the starter project
 
-1. Go back to the **contososports** resource group blade.
+1. Go back to the **contososports-01** resource group blade.
 
-2. Select the **contosoapp** web app (**App Service** type).
+2. Select the **contosoapp[Suffix]** web app (**App Service** type).
 
     ![Resources listed for ContosoSports. Web app selected.](media/2019-04-19-13-46-40.png "Resources listed for ContosoSports")
 
@@ -352,38 +352,26 @@ The Contoso Sports solution contains multiple projects, each of which access the
 
 1. Navigate to the **Contoso.Apps.SportsLeague.Web** project located in the **Web** folder using the **Solution Explorer** of Visual Studio.
 
-2. Right-click the **Contoso.Apps.SportsLeague.Web** project, and select **Edit Project File**.
+2. Right-click the **Contoso.Apps.SportsLeague.Web** project, and select **Manage NuGet Packages**.
 
-    ![In the solution explorer, the Contoso.Apps.SportsLeague.Web project is highlighted with its context menu expanded. The Edit Project File option is selected from the menu.](media/web_editprojfile_menu.png "Editor for the project file")
+3. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
 
-3. In the **PropertyGroup** element, add the following XML beneath the TargetFramework item and save the file:
-   
-    ```xml
-    <UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>
-    ```
-
-    ![A portion of the project file is displayed. The UserSecretsId element is highlighted in the code listing.](media/web_addusersecretsidtoproject.png "Project file editor")
-
-4. Right-click the **Contoso.Apps.SportsLeague.Web** project, and select **Manage NuGet Packages**.
-
-5. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
-
-6. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
+4. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
 
     ![The Nuget Package Manager windows is displayed with the Browse tab selected, Microsoft.Azure.AppConfiguration.AspNetCore entered into the search box and selected from the search results. In the next pane, the Install button is selected.](media/nuget_installappconfigpackage_web.png "Nuget Package Manager")
 
-7. Repeat step 4-6, this time installing the latest **Azure.Identity**.
+5. Repeat step 4-6, this time installing the latest **Azure.Identity**.
 
-8. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Web** project, open the **Program.cs** file.
+6. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Web** project, open the **Program.cs** file.
 
-9. Uncomment the following **using** statements at the top of the file:
+7. Uncomment the following **using** statements at the top of the file:
     
     ```C#
     using Microsoft.Extensions.Configuration;
     using Azure.Identity;
     ```
 
-10. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the **contosoapp** application service to point to the centralized App Configuration resource.
+8. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the **contosoapp** application service to point to the centralized App Configuration resource.
     
     ```C#
     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
@@ -401,29 +389,29 @@ The Contoso Sports solution contains multiple projects, each of which access the
     })
     .UseStartup<Startup>();
     ```
-11. Right-click the **Contoso.Apps.SportsLeague.Web** project, and select **Publish**.
+9. Press **Ctrl + S** to save the file then right-click the **Contoso.Apps.SportsLeague.Web** project, and select **Publish**.
 
     ![In Solution Explorer, under Solution \'Contoso.Apps.SportsLeague\' (7 projects), Web is expanded, and under Web, Contoso.Apps.SportsLeague.Web is selected.](media/2019-04-19-14-03-04.png "Solution Explorer")
 
-12. On the Publish dialog, select **Azure** as the **Target**, then select **Next**.
+10. On the Publish dialog, select **Azure** as the **Target**, then select **Next**.
     
-13. For **Specific target**, select **Azure App Service (Windows)**, then select **Next**.
+11. For **Specific target**, select **Azure App Service (Windows)**, then select **Next**.
 
-15. For **App Service**, expand the lab resource group, and select the **contosoapp** from the list, then choose **Finish**.
+12. For **App Service**, expand the lab resource group, and select the **contosoapp[DeploymentID]** from the list, then choose **Finish**.
     
     ![The App Service dialog is shown with the resource group expanded and the contosoapp application service selected in the list. The OK button is highlighted.](media/deploywebapp_serviceselection.png "App Service Selection")
 
-16. Select **Publish** to publish the Web application.
+13. Select **Publish** to publish the Web application.
 
     ![Publish profile is displayed with the Publish button highlighted.](media/2020-06-15-16-53-15.png "Publish profile")
 
-17. In the Visual Studio **Output** view, you will see a status that indicates the Web App was published successfully.
+14. In the Visual Studio **Output** view, you will see a status that indicates the Web App was published successfully.
 
     ![Screenshot of the Visual Studio Output view, with the Publish Succeeded message circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image50.png "Visual Studio Output view")
 
     >**Note**: Your URL will differ from the one shown in the Output screenshot because it must be globally unique.
 
-18. A new browser should automatically open the new web applications. Validate the website by choosing the **Store** link on the menu. You should see product items. If products are returned, then the connection to the database is successful.
+15. A new browser should automatically open the new web applications. Validate the website by choosing the **Store** link on the menu. You should see product items. If products are returned, then the connection to the database is successful.
 
     ![Screenshot of the Store link.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image51.png "Store link")
 
@@ -442,9 +430,9 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
 
     ![The resource listing is displayed with the ContosoSportsDB SQL database resource highlighted.](media/resourcelist_contososportsdb.png "Resource listing")
 
-3. Under the **Settings** menu area, select **Geo-Replication**.
+3. Under the **Data Management** menu area, select **Geo-Replication**.
 
-    ![In the Settings section, Geo-Replication is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image53.png "Settings section")
+    ![In the Settings section, Geo-Replication is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up1.png "Settings section")
 
 4. Select the Azure Region to place the Secondary within.
 
@@ -452,21 +440,14 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
 
     The Secondary Azure Region should be the Region Pair for the region the SQL Database is hosted in. Consult <https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions> to see which region pair the location you are using for this lab is in.
 
-    >**Note**: If you choose a region that cannot be used as a secondary region, you will not be able to pick a pricing plan. Choose another region.
-    > 
-    > ![Wrong geo-replication region selected. Not available options presented.](media/2019-03-30-16-05-25.png "Not available options presented.")
 
-5. On the **Create secondary** blade, select **Secondary Type** as **Readable**.
+7. Select **Create new **.
 
-6. Select **Target server** ***Configure required settings***.
-
-    ![the Target server Configure required settings option is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image55.png "Target server option")
-
-7. Select **Create a new server**.
+    ![the Target server Configure required settings option is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up2.png "Target server option")
    
 8. On the **New server** blade, specify the following configuration:
 
-   - Server name: **A unique value (ensure the green checkmark appears)**.
+   - Server name: **contososql[Suffix]** *(ensure the green checkmark appears)*.
 
    - Server admin login: **demouser**
 
@@ -478,9 +459,7 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
 
     ![Screenshot of the Select button.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image20.png "Select button")
 
-10. On the **Create secondary** blade, select **OK**.
-
-    ![Screenshot of the OK button.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image57.png "OK button")
+10. On the **Create secondary** blade, select **Review + Create** then click on **Create**.
 
     > **Note**: The Geo-Replication will take a few minutes to complete.
 
@@ -519,9 +498,9 @@ With SQL Database Geo-Replication configured, the Azure SQL Failover Groups feat
     
     ![The list of lab resources is shown with the primary SQL server resource selected.](media/primary_sqlserverresource_inlist.png "Resource listing")
 
-3. On the **SQL server** blade, select **Failover groups** under **Settings**.
+3. On the **SQL server** blade, select **Failover groups** under **Data Management**.
 
-    ![Failover groups setting option.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/sqlserverfailovergroupslink.png "Failover groups setting option")
+    ![Failover groups setting option.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up3.png "Failover groups setting option")
 
 4. On the **Failover groups** pane, select the **Add group** button.
 
@@ -587,9 +566,9 @@ Since the Replication and Failover process can take anywhere from 10 to 30 minut
     
     ![The list of lab resources is shown with the primary SQL server resource selected.](media/primary_sqlserverresource_inlist.png "Resource listing")
 
-3. On the **SQL server** blade, select **Failover groups** under Settings.
+3. On the **SQL server** blade, select **Failover groups** under Data Management.
 
-    ![Failover groups option is highlighted.](images/2020-03-17-19-37-00.png "Failover groups option is highlighted")
+    ![Failover groups option is highlighted.](images/up3.png "Failover groups option is highlighted")
 
 4. Select the **Failover group** in the list.
 
@@ -604,7 +583,7 @@ The failover may take a few minutes to complete. You can continue with the next 
 <!-- omit in toc -->
 #### Subtask 4: Test e-commerce Web App after Failover
 
-1. From the Azure portal, select **Resource Groups**, and select **contososports**.
+1. From the Azure portal, select **Resource Groups**, and select **contososports-01**.
 
 2. Select the **Web App** created earlier.
 
@@ -635,7 +614,7 @@ In this exercise, you will provision a website via the Azure Web App template us
 
 2. Select **+ Create a resource**, then search for and select **Web App**.
 
-3. Specify a **unique Name** for the Web App, **Resource Group** you have used throughout the lab are selected. Also, specify **.NET Core 3.1 (LTS)** as the **Runtime stack**.
+3. Specify name **contososportscallcenterapp[Suffix]** for the Web App, **Resource Group** you have used throughout the lab are selected. Also, specify **.NET Core 3.1 (LTS)** as the **Runtime stack**.
 
 4. Select **Linux Plan**, and create a new Linux-based App Service Plan for the Web App.
 
@@ -699,36 +678,26 @@ In this exercise, you will provision a website via the Azure Web App template us
 
 1. Navigate to the **Contoso.Apps.SportsLeague.Admin** project located in the **Web** folder using the **Solution Explorer** in Visual Studio.
 
-2. Right-click the **Contoso.Apps.SportsLeague.Admin** project, and select **Edit Project File**.
+2. Right-click the **Contoso.Apps.SportsLeague.Admin** project, and select **Manage NuGet Packages**.
 
-3. In the **PropertyGroup** element, add the following XML beneath the TargetFramework item and save the file:
-   
-    ```xml
-    <UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>
-    ```
+3. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
 
-    ![A portion of the project file is displayed. The UserSecretsId element is highlighted in the code listing.](media/web_addusersecretsidtoproject.png "Editor displaying project file")
-
-4. Right-click the **Contoso.Apps.SportsLeague.Admin** project, and select **Manage NuGet Packages**.
-
-5. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
-
-6. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
+4. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
 
     ![The Nuget Package Manager windows is displayed with the Browse tab selected, Microsoft.Azure.AppConfiguration.AspNetCore entered into the search box and selected from the search results. In the next pane, the Install button is selected.](media/nuget_installappconfigpackage_web.png "The NuGet Package manager")
 
-7. Repeat step 4-6, this time installing the latest **Azure.Identity**.
+5. Repeat step 4-6, this time installing the latest **Azure.Identity**.
 
-8. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Web** project, open the **Program.cs** file.
+6. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Web** project, open the **Program.cs** file.
 
-9. Uncomment the following **using** statements at the top of the file:
+7. Uncomment the following **using** statements at the top of the file:
     
     ```C#
     using Microsoft.Extensions.Configuration;
     using Azure.Identity;
     ```
 
-10. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the **contosoapp** application service to point to the centralized App Configuration resource.
+8. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the **contosoapp** application service to point to the centralized App Configuration resource.
     
     ```C#
     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
@@ -747,25 +716,25 @@ In this exercise, you will provision a website via the Azure Web App template us
     .UseStartup<Startup>();
     ```
 
-11. Right-click the **Contoso.Apps.SportsLeague.Admin** project, and select **Publish**.
+9. Save the file by pressing **Ctrl + S** then right-click the **Contoso.Apps.SportsLeague.Admin** project and select **Publish**.
 
     ![In Solution Explorer, the right-click menu for Contoso.Apps.SportsLeague.Admin displays, and Publish is selected.](media/2019-04-19-14-30-03.png "Right-Click menu")
 
-12. On the Publish dialog, select **Azure** for the **Target**, then select **Next**.
+10. On the Publish dialog, select **Azure** for the **Target**, then select **Next**.
 
-13. For **Specific target**, select **Azure App Service (Linux)**, then select **Next**. 
+11. For **Specific target**, select **Azure App Service (Linux)**, then select **Next**. 
 
-14. For **App Service**, expand the lab Resource group, and select the **Web App** that was created for the Call Center Admin Web App (with the name that was created previously).
+12. For **App Service**, expand the lab Resource group, and select the **Web App** that was created for the Call Center Admin Web App (with the name that was created previously).
 
     ![The App Service dialog is shown with the resource group expanded and the call center app service selected.](media/appsvcdeploy_selectcallcenterappdialog.png "Publish target app service selection")
     
-15. Select **Finish**.
+13. Select **Finish**.
 
-16. Select **Publish** to publish the Web application.
+14. Select **Publish** to publish the Web application.
 
     ![Publish button is highlighted](media/2020-06-19-22-25-36.png "Publish button")
 
-17. Once deployment is complete, navigate to the Web App. It should look like the following:
+15. Once deployment is complete, navigate to the Web App. It should look like the following:
 
     ![The Contoso website displays the Contoso Sports League Admin webpage, which says that orders that display below are sorted by date, and you can select an order to see its details. However, at this time, there is no data available under Completed Orders.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image89.png "Contoso website")
 
@@ -784,7 +753,7 @@ In this exercise, the attendee will provision an Azure API app template using th
 
 3. On the new **API App** create form, create the following values:
 
-   - **App name:** Specify a unique name for the App Name.
+   - **App name:** contososportspaymentgateway[Suffix]
    - **Subscription:** Your Azure subscription.
    - **Resource Group:** Select the lab resource group.
    - **App Service Plan/Location:** Select the **ContosoSportsPlan**.
@@ -840,7 +809,7 @@ In this exercise, the attendee will provision an Azure API app template using th
 
 2. Select **+ Create a resource**, type **API App** into the marketplace search box, and press **Enter**.  Select the **Create** button.
 
-3. On the new **API App** form, specify a unique name for the **API App**, and ensure the previously used Resource Group and the **ContosoSportsPlan** App Service Plan are selected. You may also disable **Application Insights**.
+3. On the new **API App** form, specify name **contososportsoffers[Suffix]** for the **API App**, and ensure the previously used Resource Group and the **ContosoSportsPlan** App Service Plan are selected. You may also disable **Application Insights**.
 
     ![In the API App form, a unique name is typed in the App name field. App configuration fields displayed.](media/2019-04-11-05-03-33.png "API App blade")
 
@@ -892,7 +861,7 @@ In this exercise, the attendee will provision an Azure API app template using th
 
     ![On the Identity screen, the System assigned tab is selected and the Status field is in the On position.](media/appconfig_systemidentity.png "The Identity screen")
 
-8. Open the **contosokv** Key Vault resource, and from the left menu, select **Access policies**. 
+8. Open the **contosokv[Suffix]** Key Vault resource, and from the left menu, select **Access policies**. 
 
 9. Select the **+ Add Access Policy** link.
 
@@ -959,7 +928,7 @@ In this exercise, the attendee will provision an Azure API app template using th
     .UseStartup<Startup>();
     ```
 
-11. Right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Publish**.
+11. Save the file by pressing **Ctrl +S** then right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Publish**.
 
     ![In Solution Explorer, from the Contoso.Apps.SportsLeague.Admin right-click menu, Publish is selected.](media/2019-04-19-15-03-45.png "Solution Explorer")
 
@@ -1006,7 +975,7 @@ In this exercise, the attendee will provision an Azure API app template using th
 
 1. In the Azure Portal, return to the lab resource group.
 
-2. Select the **contosoconfig** App Configuration resource from the list.
+2. Select the **contosoconfig[Suffix]** App Configuration resource from the list.
 
     ![The resource listing is displayed with the App Configuration resource highlighted.](media/appconfig_resourcelist_selection.png "The resource listing")
 
