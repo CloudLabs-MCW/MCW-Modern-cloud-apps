@@ -157,7 +157,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 
     ![In the Database connection strings blade, the ADO.NET connection string is circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image24.png "Database connection strings blade")
 
-6. Go back to the **contososports-01** resource group blade, and select the **contososports[DeploymentID]** SQL Server.
+6. Go back to the **contososports-01** resource group blade, and select the **contososports[Suffix]** SQL Server.
 
     ![The contososports resource group with the contososports sql server highlighted.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/2019-11-15-17-47-46.png "Azure Portal")
 
@@ -188,7 +188,7 @@ In this exercise, you will provision a website via the Azure **Web App + SQL** t
 
     ![In the Storage account blade, under Settings, Access keys is circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image35.png "Storage account blade")
 
-3. On the **Access keys** blade, select the copy button by the **Connection String** field in the **key1** section. Paste the value into **Notepad** for later usage. 
+3. On the **Access keys** blade, click on **Show keys** then select the copy button by the **Connection String** field in the **key1** section. Paste the value into **Notepad** for later usage. 
 
     ![In the Access keys blade default keys section, the copy button for the key1 connection string is circled.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image36.png "Access keys blade, default keys section")
 
@@ -333,7 +333,7 @@ The Contoso Sports solution contains multiple projects, each of which access the
 
     ![On the Identity screen, the System assigned tab is selected and the Status field is in the On position.](media/appconfig_systemidentity.png "The Identity Screen")
 
-10. Open the **contosokv** Key Vault resource, and from the left menu, select **Access policies**. 
+10. Open the **contosokv[Suffix]** Key Vault resource, and from the left menu, select **Access policies**. 
 
 11. Select the **+ Add Access Policy** link.
 
@@ -453,11 +453,12 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
 
    - Password and Confirm Password: **demo@pass123**
 
+   - Location: *Select the Secondary region*
+
     ![The fields in the New Server blade display with the previously defined settings.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image56.png "New Server blade")
 
-9.  Once the values are accepted in the **New server** blade, choose **Select**.
+9.  Once the values are accepted in the **New server** blade, select **OK**.
 
-    ![Screenshot of the Select button.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image20.png "Select button")
 
 10. On the **Create secondary** blade, select **Review + Create** then click on **Create**.
 
