@@ -881,36 +881,25 @@ In this exercise, the attendee will provision an Azure API app template using th
 
 1. Navigate to the **Contoso.Apps.SportsLeague.Offers** project located in the **APIs** folder using the **Solution Explorer** in Visual Studio.
 
-2. Right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Edit Project File**.
+2. Right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Manage NuGet Packages**.
 
-3. In the **PropertyGroup** element, add the following XML beneath the TargetFramework item and save the file:
+3. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
 
-    ```xml
-    <UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>
-    ```
-
-    ![A portion of the project file is displayed. The UserSecretsId element is highlighted in the code listing.](media/web_addusersecretsidtoproject.png "Editor showing the project file")
-
-4. Right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Manage NuGet Packages**.
-
-5. Select the **Browse** tab, and search for **Microsoft.Azure.AppConfiguration.AspNetCore**.
-
-6. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
+4. Select **Microsoft.Azure.AppConfiguration.AspNetCore** from the search results, and in the next pane, select **Install** to install the latest stable version.
 
     ![The Nuget Package Manager windows is displayed with the Browse tab selected, Microsoft.Azure.AppConfiguration.AspNetCore entered into the search box and selected from the search results. In the next pane, the Install button is selected.](media/nuget_installappconfigpackage_web.png "The NuGet Package Manager")
 
-7. Repeat step 4-6, this time installing the latest **Azure.Identity**.
+5. Repeat step 4-6, this time installing the latest **Azure.Identity**.
 
-8. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Offers** project, open the **Program.cs** file.
+6. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Offers** project, open the **Program.cs** file.
 
-9. Uncomment the following **using** statements at the top of the file:
+7. Uncomment the following **using** statements at the top of the file:
 
     ```C#
     using Microsoft.Extensions.Configuration;
     using Azure.Identity;
     ```
-
-10. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the API application service to point to the centralized App Configuration resource.
+8. In the **CreateHostBuilder** method, uncomment the following code - this tells the application to utilize the AppConfig connection string that you've already setup on the API application service to point to the centralized App Configuration resource.
 
     ```C#
     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
@@ -929,43 +918,43 @@ In this exercise, the attendee will provision an Azure API app template using th
     .UseStartup<Startup>();
     ```
 
-11. Save the file by pressing **Ctrl +S** then right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Publish**.
+9. Save the file by pressing **Ctrl +S** then right-click the **Contoso.Apps.SportsLeague.Offers** project, and select **Publish**.
 
     ![In Solution Explorer, from the Contoso.Apps.SportsLeague.Admin right-click menu, Publish is selected.](media/2019-04-19-15-03-45.png "Solution Explorer")
 
-12. On the Publish dialog, select **Azure** for the **Target**. Select **Next**.
+10. On the Publish dialog, select **Azure** for the **Target**. Select **Next**.
 
-13. For **Specific target**, select **Azure App Service (Windows)**. Select **Next**.
+11. For **Specific target**, select **Azure App Service (Windows)**. Select **Next**.
 
-14. For **App Service**, expand the resource group, and select the API app service that you created for the Offer API from the list, then choose **Next**.
+12. For **App Service**, expand the resource group, and select the API app service that you created for the Offer API from the list, then choose **Next**.
 
     ![The App Service dialog is shown with the offers api selected.](media/deployment_selectoffersapiservice.png "Publish target app service selection")
     
-15. For **API Management**, check the **Skip this step** checkbox and select **Finish**.
+13. For **API Management**, check the **Skip this step** checkbox and select **Finish**.
     
-16. Select **Publish** to publish the API App.
+14. Select **Publish** to publish the API App.
 
     ![Publish button is highlighted](media/offerapi_vspublishbutton.png "Publish button is highlighted")
 
-17. In the Visual Studio **Output** view, you will see a status indicating the Web App was published successfully.
+15. In the Visual Studio **Output** view, you will see a status indicating the Web App was published successfully.
 
     ![The Visual Studio output shows that the web app was published successfully.](media/offerapi_publishsuccessoutput.png "Visual Studio output")
 
-18. Copy and paste the offer api **URL** of the deployed **API App** into Notepad for later use.
+16. Copy and paste the offer api **URL** of the deployed **API App** into Notepad for later use.
 
-19. Viewing the Web App in a browser will display the Swagger UI for the API.
+17. Viewing the Web App in a browser will display the Swagger UI for the API.
 
-20. In the Visual Studio **Output** view, you will see a status the API app was published successfully.
+18. In the Visual Studio **Output** view, you will see a status the API app was published successfully.
 
-21. Record the value of the deployed API app URL into Notepad for later use.
+19. Record the value of the deployed API app URL into Notepad for later use.
 
-22. Viewing the Web App in a browser will display the Swagger UI for the API.
+20. Viewing the Web App in a browser will display the Swagger UI for the API.
 
     ![The Offers API is up and running and the Swagger UI is displayed.](media/2019-04-11-05-20-40.png "Swagger UI")
 
     > **Note**: When opening the Swagger UI using the Internet Explorer browser you will see a "Resolver error" error message. This is a result of the Swagger UI no longer supporting Internet Explorer. In another browser, the Swagger UI will work as expected.
 
-23. Within the Swagger UI for the Offers API, select the `/api/get` method on the API. Then select the **Try it out** button, and then **Execute** to test out the API call from within the Swagger UI in the web browser. Once it executes, scroll down to view the results of the API call execution.
+21. Within the Swagger UI for the Offers API, select the `/api/get` method on the API. Then select the **Try it out** button, and then **Execute** to test out the API call from within the Swagger UI in the web browser. Once it executes, scroll down to view the results of the API call execution.
 
     ![Swagger UI displaying API call response.](media/2020-03-17-20-56-31.png "Swagger UI")
 
