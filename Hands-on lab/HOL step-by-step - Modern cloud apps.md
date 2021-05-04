@@ -441,11 +441,11 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
     The Secondary Azure Region should be the Region Pair for the region the SQL Database is hosted in. Consult <https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions> to see which region pair the location you are using for this lab is in.
 
 
-7. Select **Create new **.
+5. Select **Create new **.
 
     ![the Target server Configure required settings option is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up2.png "Target server option")
    
-8. On the **New server** blade, specify the following configuration:
+6. On the **New server** blade, specify the following configuration:
 
    - Server name: **contososql[Suffix]** *(ensure the green checkmark appears)*.
 
@@ -457,36 +457,36 @@ In this exercise, the attendee will provision a secondary SQL Database and confi
 
     ![The fields in the New Server blade display with the previously defined settings.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image56.png "New Server blade")
 
-9.  Once the values are accepted in the **New server** blade, select **OK**.
+7.  Once the values are accepted in the **New server** blade, select **OK**.
 
 
-10. On the **Create secondary** blade, select **Review + Create** then click on **Create**.
+8. On the **Create secondary** blade, select **Review + Create** then click on **Create**.
 
     > **Note**: The Geo-Replication will take a few minutes to complete.
 
-11. After the Geo-Replication has finished provisioning, return to the resource group for the lab.
+9. After the Geo-Replication has finished provisioning, return to the resource group for the lab.
 
-12. Select the name of the secondary SQL Server resource that you just created.
+10. Select the name of the secondary SQL Server resource that you just created.
 
     ![In the list of resources, the secondary SQL server resource is selected.](media/secondarydatabaseinresourcelist.png "Resource listing")
 
-13. On the **SQL Server** blade, within the **Overview** pane, select **Show firewall settings** link.
+11. On the **SQL Server** blade, within the **Overview** pane, select **Show firewall settings** link.
 
     ![On the SQL Server blade, at the top, the Set server firewall tile is boxed in red.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image62.png "SQL Server blade, Overview section")
 
-14. On the **Firewall Settings** blade, specify a new rule named **My IP**, copy your **Client IP address**, and paste it into the **Start IP** and **End IP**. This will set the allowed IP Address range to just your IP address so you can connect to the database from this machine.
+12. On the **Firewall Settings** blade, specify a new rule named **My IP**, copy your **Client IP address**, and paste it into the **Start IP** and **End IP**. This will set the allowed IP Address range to just your IP address so you can connect to the database from this machine.
 
     ![On the Firewall Settings blade, in the New rule section, a new rule has been created with the previously defined settings.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image27.png "New rule section ")
 
-15. Select **Save**.
+13. Select **Save**.
 
     ![Screenshot of the Firewall settings Save button.](media/2019-04-10-16-00-29.png "Firewall settings Save button")
 
-16. Update progress can be found by choosing the **Notifications** link located at the top of the page.
+14. Update progress can be found by choosing the **Notifications** link located at the top of the page.
 
     ![Screenshot of the Success dialog box, which says that the server firewall rules have been successfully updated.](media/2019-04-19-13-39-41.png "Success dialog box")
 
-17. Close all configuration blades.
+15. Close all configuration blades.
 
 <!-- omit in toc -->
 #### Subtask 2: Setup SQL Failover Group
@@ -507,7 +507,7 @@ With SQL Database Geo-Replication configured, the Azure SQL Failover Groups feat
 
     ![Add group button.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/failovergroupsaddgroupbutton.png "Add group buton")
 
-5. On the **Failover group** pane, enter a unique **Failover group name**.
+5. On the **Failover group** pane, enter a unique **contososportsfg[Suffix]**.
 
     ![Failover group name field.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/sqlfailovergroupname.png "Failover group name field")
 
@@ -535,9 +535,9 @@ With SQL Database Geo-Replication configured, the Azure SQL Failover Groups feat
 
     ![Read/Write and Read-only listener endpoints are displayed.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/sqlfailovergroupendpoints.png "Read/Write and Read-only listener endpoints are displayed")
 
-12. Go back to the **contososports** resource group blade.
+12. Go back to the **contososports-01** resource group blade.
 
-13. Select the **contosokv** Key vault resource.
+13. Select the **contosokv[Suffix]** Key vault resource.
 
 14. Under the **Settings** menu, select **Secrets**.
 
@@ -689,7 +689,7 @@ In this exercise, you will provision a website via the Azure Web App template us
 
 5. Repeat step 4-6, this time installing the latest **Azure.Identity**.
 
-6. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Web** project, open the **Program.cs** file.
+6. Now we are ready to configure this application to use the App Configuration in Azure. Under the **Contoso.Apps.SportsLeague.Admin** project, open the **Program.cs** file.
 
 7. Uncomment the following **using** statements at the top of the file:
     
@@ -979,7 +979,7 @@ In this exercise, the attendee will provision an Azure API app template using th
 
    - Name: `APIEndpoints:PaymentsAPI`
 
-   - Value: Enter the **HTTPS** URL for the Payments API App with `/api/nvp` appended to the end. This is the value that you recorded when deploying the API. Alternatively, this value can be retrieved by opening the API resource in the Azure Portal and copying the URL value on the Overview screen.
+   - Value: Enter the **HTTPS** URL for the Payment gateway API App with `/api/nvp` appended to the end. This is the value that you recorded when deploying the API. Alternatively, this value can be retrieved by opening the API resource in the Azure Portal and copying the URL value on the Overview screen.
 
         >**Example**: `https://paymentsapi0.azurewebsites.net/api/nvp`
 
@@ -1102,9 +1102,9 @@ The Contoso call center admin application will only be accessible by users of th
 
     ![In the App Services blade, under Name, contososportscallcentercp is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image136.png "App Services blade")
 
-3. Select the **Authentication / Authorization** tile.
+3. Select the **Authentication (classic)** tile.
 
-    ![On the App Service blade, under Settings, Authentication / Authorization is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image137.png "App Service blade")
+    ![On the App Service blade, under Settings, Authentication / Authorization is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up8.png "App Service blade")
 
 4. Change **App Service Authentication** to **On**, and change the dropdown to **Log in with Azure Active Directory**.
 
@@ -1126,9 +1126,9 @@ The Contoso call center admin application will only be accessible by users of th
 
     ![The Action to take when request is not authenticated field is set to Log in with Azure Authentication.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image142.png "Action to take field")
 
-9. In the **Authentication / Authorization** blade, select **Save**.
+9. In the **Authentication (classic)** blade, select **Save**.
 
-    ![The Save button is circled in the App Service blade.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image143.png "App Service blade")
+    ![The Save button is circled in the App Service blade.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up9.png "App Service blade")
 
 <!-- omit in toc -->
 #### Subtask 2: Verify the call center administration website uses the access control logon
@@ -1139,7 +1139,7 @@ The Contoso call center admin application will only be accessible by users of th
 
 >**Note:** For first Login you may be prompted to change the password, Provide a new password to continue with the lab.
 
-    ![Microsoft login prompt.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image144.png "Microsoft login prompt")
+   ![Microsoft login prompt.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image144.png "Microsoft login prompt")
 
 3. After you log on and **accept the consent**, your browser will be redirected to the Contoso Sports League Admin webpage.
 
