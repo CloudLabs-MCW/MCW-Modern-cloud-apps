@@ -2491,6 +2491,11 @@ The Contoso Sports League would like to move their existing source control to Gi
 
 4. Commit the initial code, and push it to the master branch by issuing the following commands:
 
+      ```shell
+    git config --global user.email "you@example.com"
+    git config -- global user.name "Your username"
+    ```
+
     ```shell
     git add -a
     git commit -m "initial commit"
