@@ -1205,27 +1205,41 @@ In this exercise, you will configure an Azure AD Business to Consumer (B2C) inst
 
 ### Task 1: Create a new directory
 
-1. Log in to the Azure portal by using your existing Azure subscription or by starting a free trial. In the left-hand navigation menu, select **+Create a resource**. Then, search for and select **Azure Active Directory B2C** and select **Create** on the new blade that pops up.
+1. In Azure portal search for **Subscriptions** and click on it.
+
+2. Click on the name of your subscription.
+
+  ![.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up10.png "Everything blade")
+  
+3. In left blade, under settings, click on **Resource Providers**
+
+   ![.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up11.png "Everything blade")
+   
+4. Now under Resource providers search for **Microsoft.AzureActiveDirectory** and select it from the search results then click on **Register**.
+
+   ![.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/up12.png "Everything blade")
+
+5. Log in to the Azure portal by using your existing Azure subscription or by starting a free trial. In the left-hand navigation menu, select **+Create a resource**. Then, search for and select **Azure Active Directory B2C** and select **Create** on the new blade that pops up.
 
     ![In the Everything blade, the active directory B2C text is in the Search field, and under Results, Azure Active Directory B2C displays.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image156.png "Everything blade")
 
-2. In the new blade, select **Create a new Azure AD B2C Tenant**. Then, enter the name as **ContosoB2C** and a unique domain name and region. Select **Review + create**, then **Create**. After directory creation completes, select the link in the new information tile that reads **Click here to navigate to your new directory**.
+6. In the new blade, select **Create a new Azure AD B2C Tenant**. Then, enter the name as **ContosoB2C** and a unique domain name and region. Select **Review + create**, then **Create**. After directory creation completes, select the link in the new information tile that reads **Click here to navigate to your new directory**.
 
     ![Image of the Create a directory with the required fields filled in.](media/2020-06-20-23-12-29.png "Create a directory")
 
     ![Image showing the Directory creation was successful.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image157.png "Directory creation was successful")
 
-3. The new Azure AD Directory that was created will now be open in new browser tab. Keep this tab open for the next few steps.
+7. The new Azure AD Directory that was created will now be open in new browser tab. Keep this tab open for the next few steps.
 
-4. Back in the browser tab where you created the Azure AD Directory from, open the new Azure AD B2C tenant by selecting **Resource Groups** in the navigation menu to the left and then, **contososports**. Then, in the new blade, select the **B2C tenant** you just created.
+8. Back in the browser tab where you created the Azure AD Directory from, open the new Azure AD B2C tenant by selecting **Resource Groups** in the navigation menu to the left and then, **contososports**. Then, in the new blade, select the **B2C tenant** you just created.
 
     ![In the contososports resource group, the new B2C tenant is highlighted.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/b2ctenant_in_rg.png "Azure AD B2C Settings window")
 
-5. In the new blade, select the **Azure AD B2C Settings** tile for the new B2C tenant. You will be taken to the new subscription for this tenant.
+9. In the new blade, select the **Azure AD B2C Settings** tile for the new B2C tenant. You will be taken to the new subscription for this tenant.
 
     ![In the Azure AD B2C tenant window, on the left, All Settings is selected. In the bottom right section, the Azure AD B2C Settings tile is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image160.png "Azure AD B2C Settings window")
 
-6. In the new tab that opened, under the **MANAGE** menu area of the open **Azure AD B2C** blade, select **App registrations**. Then, in the new pane, select **+New registration**.
+10. In the new tab that opened, under the **MANAGE** menu area of the open **Azure AD B2C** blade, select **App registrations**. Then, in the new pane, select **+New registration**.
 
     ![In the Azure AD B2C Settings window, on the left, All Settings is selected. In the middle, under Settings, under Manage, App registrations is selected. On the right, the New registration button is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/b2c-add-app-link.png "Azure AD B2C Settings window")
 
@@ -1267,9 +1281,9 @@ In this exercise, you will configure an Azure AD Business to Consumer (B2C) inst
 
     ![In the Add policy blade, Identity providers is selected. In the Select identity providers blade, Email signup is selected.](media/2019-03-28-12-25-35.png "Add policy and Select identity providers blades")
 
-6. In the **Multifactor authentication** section, ensure **MFA enforcement** is set to **Conditional (Recommended)**, this will disable MFA for this exercise.
+6. In the **Multifactor authentication** section, ensure **MFA enforcement** is set to **Off**, this will disable MFA for this exercise.
 
-    ![The Multifactor authentication section of the form is displayed with MFA enforcement set to Conditional.](media/mfa_conditional.png "MFA enforcement form")
+    ![The Multifactor authentication section of the form is displayed with MFA enforcement set to Conditional.](media/up13.png "MFA enforcement form")
 
 7. In the **Conditional Access** section. Uncheck the **Enforce conditional access policies** checkbox.
 
@@ -1277,7 +1291,6 @@ In this exercise, you will configure an Azure AD Business to Consumer (B2C) inst
 
 8. In the **User attributes and claims** section, select the **Show more...** link.
 
-    ![In the Azure AD B2C - User flow policy - create user flow pane, the Show more link is highlighted after the default user attributes and claims.](media/2019-03-28-12-38-39.png "Show more link")
 
 9. In the **User attributes and token claims** section, select the following **Collect attribute** checkboxes:
 
@@ -1343,9 +1356,7 @@ To enable profile editing on your application, you will need to create a profile
 
    ![The Identity providers section of the form is displayed with Email signin selected.](media/profile_identityproviders.png "Identity providers")
 
-7. In the **Multifactor authentication** section, ensure the MFA enforcement is set to **Conditional (Recommended)**.
-
-   ![The Multifactor authentication section of the form is displayed with the MFA enforcement field set to Conditional.](media/profile_mfaauth.png "Multifactor authentication")
+7. In the **Multifactor authentication** section, ensure the MFA enforcement is set to **Conditional**.
 
 8. For the **Conditional Access** section, uncheck the **Enforce conditional access policies** checkbox.
 
@@ -1379,7 +1390,7 @@ To enable profile editing on your application, you will need to create a profile
 
 14. Open the policy by selecting **B2C\_1\_EditProfile**, then **Run user flow**.
 
-15. Select **Contoso B2C application** in the **Select Application** drop-down.
+15. Select **Contoso B2C application** in the **Application** drop-down.
 
 16. Select **Run user flow**. A new browser tab opens, and you can run through the profile editing consumer experience in your application.
 
@@ -1446,20 +1457,21 @@ To enable profile editing on your application, you will need to create a profile
 
     ```csharp
     app.UseAuthentication();
-    app.UseAuthorization();
     ```
 
     The result will look similar to the following:
 
     ![app.UseAuthentication code inserted.](media/2020-03-18-14-44-13.png "app.UseAuthentication code inserted")
+    
+4. **Save** the file.
 
-4. Locate the Azure AD B2C name by navigating to your resource group. Copy the name to Notepad.
+5. Locate the Azure AD B2C name by navigating to your resource group. Copy the name to Notepad.
 
     ![List of all of the resources within the ContosoSports resource group. Pointing to the B2C tenant name.](media/2019-03-28-16-51-14.png "Locate B2C tenant name")
 
-5. Next, using the Azure Management Portal, using your main subscription, open the Contoso Web App blade, and select **Configuration**.
+6. Next, using the Azure Management Portal, using your main subscription, open the Contoso Web App blade, and select **Configuration**.
 
-6. Add the following settings in the **Application Settings** section:
+7. Add the following settings in the **Application Settings** section:
 
    - AzureADB2C:Instance - `https://[your Azure AD B2C name].b2clogin.com/tfp/`
    - AzureADB2C:ClientId - **B2C Application ID you copied down earlier**.
@@ -1469,13 +1481,13 @@ To enable profile editing on your application, you will need to create a profile
    - AzureADB2C:ResetPasswordPolicyId - `B2C_1_SSPR`
    - AzureADB2C:EditProfilePolicyId - `B2C_1_EditProfile`
 
-7. Select **Save**.
+8. Select **Save**.
 
 ### Task 7: Send authentication requests to Azure AD
 
 Your app is now properly configured to communicate with Azure AD B2C by using ASP.NET Core Identity. OWIN has taken care of all of the details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session. All that remains is to initiate each user's flow.
 
-1. Right select the **Controllers** folder, and select **Add** -\> **Controller**.
+1. Right click on the **Controllers** folder, and select **Add** -\> **Controller**.
 
     ![In Solution Explorer, in the right-click menu for the Controllers folder, Add is selected, and from its menu, Controller is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image177.png "Solution Explorer")
 
@@ -1569,7 +1581,7 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
     using Microsoft.Extensions.Configuration;
     ```
 
-2. Still in the **Controllers\\HomeController.cs** file, add the following method to the **HomeController** class:
+2. Still in the **Controllers\\HomeController.cs** file, add the following method to the **HomeController** class and save the file.
 
     ```csharp
     [Authorize]
@@ -1582,11 +1594,11 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
     }
     ```
 
-3. You can access any claim that your application receives in the same way. A list of all the claims the app receives is available for you on the **Claims** page. In Visual Studio on the Contoso.Apps.SportsLeague.Web object, right-click on **Views -\> Home,** select **Add -\> View**, choose **Razor View - Empty** and name it **Claims.cshtml**.
+3. You can access any claim that your application receives in the same way. A list of all the claims the app receives is available for you on the **Claims** page. In Visual Studio on the Contoso.Apps.SportsLeague.Web object, right-click on folder **Views -\> Home,** select **Add -\> View**, choose **Razor View - Empty** and name it **Claims.cshtml**.
 
     ![In Solution Explorer, on the right-click menu for Views\\Home, Add is selected, and from its menu, View is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image180.png "Solution Explorer")
 
-4. Open the **Claims.cshtml** file and replace the code with the following:
+4. Open the **Claims.cshtml** file and replace the code with the following and **Save** the file.
 
     ```csharp
     @using System.Security.Claims
@@ -1617,7 +1629,7 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
 
     ![In Solution Explorer, on the right-click menu for Views\\Shared, Add is selected, and from its menu, View is selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image180.png  "Solution Explorer")
 
-6. Add the following code to the razor partial view to provide a sign-in and sign-out link as well as a link to edit the user's profile:
+6. Add the following code to the razor partial view to provide a sign-in and sign-out link as well as a link to edit the user's profile and **Save** the file.
 
     ```html
     @if (User.Identity.IsAuthenticated)
@@ -1649,7 +1661,7 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
     }
     ```
 
-7. Open `Views\Shared\_Layout.cshtml` in Visual Studio. Locate the header-top div, and add the line that starts with `@Html.ActionLink` and the line that starts with `@Html.Partial`.
+7. Open `Views\Shared\_Layout.cshtml` in Visual Studio. Locate the header-top div, and add the line that starts with `@Html.ActionLink` and the line that starts with `@Html.Partial` and **Save** the file.
 
     ```html
     <div class="header-top">
@@ -1737,7 +1749,7 @@ To configure the application for logging and diagnostics, you have been asked to
 <!-- omit in toc -->
 #### Subtask 2: Enable client side telemetry
 
-1. Open the Azure Management Portal (<http://portal.azure.com>), and navigate to the **contososports** Resource Group.
+1. Open the Azure Management Portal (<http://portal.azure.com>), and navigate to the **contososports-01** Resource Group.
 
 2. Select the **Application Insights** instance with the name that starts with **contososportsai** that is associated with the Contoso E-Commerce Site.
 
@@ -1787,7 +1799,7 @@ To configure the application for logging and diagnostics, you have been asked to
 
     ![In Solution Explorer, under Views\\Shared, Layout.cshtml is selected.](media/2019-04-19-15-45-29.png "Solution Explorer")
 
-9. Paste in the code before the `</head>` tag. Insert your **Instrumentation Key** from Notepad into the JavaScript code ``instrumentationKey:`` value.
+9. Replace the code before the `</head>` tag. Insert your **Instrumentation Key** from Notepad into the JavaScript code ``instrumentationKey:`` value.
 
     ![In Layout.cshtml, code displays, and several lines are selected.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image200.png "Layout.cshtml tab")
 
@@ -1862,7 +1874,7 @@ Contoso wants to automate the process of generating receipts in PDF format and a
    
 3. Provision and deploy the new function app, with the following settings:
 
-    - **Resource Group**: Use the existing resource group, **contososports**.
+    - **Resource Group**: Use the existing resource group, **contososports-01**.
 
     - **Function App name**: _Choose a unique name_.
 
@@ -1888,41 +1900,46 @@ Contoso wants to automate the process of generating receipts in PDF format and a
     
     - **Sku and size**: Select **Standard S1**. 
 
-6. Select **Review + create**, then **Create**.
+6. On the **Monitoring tab**
 
-7. Navigate to the **Function App** that was just created, and select **Configuration**.
+    - Enable Application Insights: **No**
+
+
+7. Select **Review + create**, then **Create**.
+
+8. Navigate to the **Function App** that was just created, and select **Configuration**.
 
     ![Display Contoso Function App, with the Configuration link highlighted.](media/2020-06-21-11-19-23.png "Contoso Function App Application Settings")
 
-8. Add a new **Application Setting** with the following values, and select **OK**:
+9. Add a new **Application Setting** with the following values, and select **OK**:
 
    - Name: **AppConfigConnectionString**
 
    - Value: **Enter the Connection String for the App Configuration Store**.
   
-9.  Select the **OK** button.
+10.  Select the **OK** button.
 
-10. Select the **Save** button.
+11. Select the **Save** button.
 
-11. The function application resource needs access to the Key Vault. The App Configuration will use pass-through authentication to the Key Vault. To authenticate the application, it will utilize a system managed identity. From the left menu, select **Identity**.
+12. The function application resource needs access to the Key Vault. The App Configuration will use pass-through authentication to the Key Vault. To authenticate the application, it will utilize a system managed identity. From the left menu, select **Identity**.
 
-12. With the **System assigned** tab selected, toggle the **Status** field to **On**, then select **Save**. 
+13. With the **System assigned** tab selected, toggle the **Status** field to **On**, then select **Save**. 
     
     ![On the Identity screen, the System assigned tab is selected and the Status field is in the On position.](media/appconfig_systemidentity.png "Identity screen")
 
-13. Open the **contosokv** Key Vault resource, and from the left menu, select **Access policies**. 
+14. Open the **contosokv[Suffix]** Key Vault resource, and from the left menu, select **Access policies**. 
 
-14. Select the **+ Add Access Policy** link.
+15. Select the **+ Add Access Policy** link.
 
-15. In the **Add access policy** form, expand **Secret permissions** and check the box next to **Get** and **List**.  
+16. In the **Add access policy** form, expand **Secret permissions** and check the box next to **Get** and **List**.  
 
-16. In the **Select principal** blade, search for the name of the function application you just created and choose the managed identity.
+17. In the **Select principal** blade, search for the name of the function application you just created and choose the managed identity.
 
-17. Select **Add**.
+18. Select **Add**.
     
     ![The Add access policy form is displayed.](media/kv_addaccesspolicy_forconfig.png "The Add Access Policy Form")
 
-18. Select **Save** on the Access policies screen to commit the changes. 
+19. Select **Save** on the Access policies screen to commit the changes. 
 
 ### Task 2: Configure and deploy the Function App
 
@@ -1959,7 +1976,7 @@ Contoso wants to automate the process of generating receipts in PDF format and a
         Configuration = builder.Build();
     }
     ```
-7. In the **ProcessOrder** method, uncomment the following line of code:
+7. In the **ProcessOrder** method, uncomment the following line of code and **Save** the file.
 
     ```C#
     Order.ReceiptUrl = await StorageMethods.UploadPdfToBlob(receipt, fileName, Configuration, log);
@@ -2044,7 +2061,7 @@ The advantages of using Logic Apps include the following:
 
 1. Next, we will create a Logic App that will trigger when an item is added to the **receiptgenerator** queue. In the Azure Management Portal, select the **+ Create a resource** button, search for and select **Logic App**, then select **Create**.
 
-2. Fill out the name as **ContosoLogicApplication** along with your subscription, and use the existing resource group **contososports**. Choose the **same region** that you have been using for this lab. Select **Review + create**, then **Create** once validation has passed.
+2. Fill out the name as **ContosoLogicApplication** along with your subscription, and use the existing resource group **contososports-01**. Choose the **same region** that you have been using for this lab. Select **Review + create**, then **Create** once validation has passed.
 
     ![In the Create logic app blade, ContosoLogicApplication is in the Name field. Under Resource group, the Use existing radio button is selected, and contososports is the name.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image237.png "Create logic app blade")
 
